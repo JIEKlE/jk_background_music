@@ -20,6 +20,7 @@ public class BackgroundMusicTabCompleter implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        if(!sender.hasPermission("jk.background_music.command")) return Collections.emptyList();
         if(!(sender instanceof Player)) return Collections.emptyList();
         Player player = (Player) sender;
         Block targetBlock = player.getTargetBlockExact(10);
