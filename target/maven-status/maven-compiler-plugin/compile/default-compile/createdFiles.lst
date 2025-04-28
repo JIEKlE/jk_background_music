@@ -1,12 +1,12 @@
-jiekie\util\WorldData.class
 jiekie\BackgroundMusicPlugin.class
-jiekie\util\SoundData.class
+jiekie\model\SoundData.class
+jiekie\manager\PlayingManager$1.class
 jiekie\util\ChatUtil.class
+jiekie\manager\PlayingManager.class
+jiekie\model\WorldData.class
 jiekie\util\SoundEffectUtil.class
-jiekie\util\PlayingManager.class
 jiekie\event\PlayerEvent$1.class
+jiekie\manager\WorldManager.class
 jiekie\completer\BackgroundMusicTabCompleter.class
 jiekie\event\PlayerEvent.class
-jiekie\util\WorldManager.class
 jiekie\command\BackgroundMusicCommand.class
-jiekie\util\PlayingManager$1.class

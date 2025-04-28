@@ -3,9 +3,8 @@ package jiekie;
 import jiekie.command.BackgroundMusicCommand;
 import jiekie.completer.BackgroundMusicTabCompleter;
 import jiekie.event.PlayerEvent;
-import jiekie.util.PlayingManager;
-import jiekie.util.WorldManager;
-import org.bukkit.configuration.file.FileConfiguration;
+import jiekie.manager.PlayingManager;
+import jiekie.manager.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BackgroundMusicPlugin extends JavaPlugin {
