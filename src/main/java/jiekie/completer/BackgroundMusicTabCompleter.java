@@ -29,7 +29,7 @@ public class BackgroundMusicTabCompleter implements TabCompleter {
         String commandType = args[0];
 
         if(length == 1)
-            return Arrays.asList("구역설정", "구역제거", "음악설정", "음악제거", "도움말");
+            return Arrays.asList("구역설정", "구역제거", "음악설정", "음악제거", "정보", "도움말");
 
         if((length == 3 || length == 6) && commandType.equals("구역설정")) {
             if(targetBlock != null)
@@ -46,11 +46,25 @@ public class BackgroundMusicTabCompleter implements TabCompleter {
                 return List.of(String.valueOf(targetBlock.getLocation().getZ()));
         }
 
-        if(length == 2 && commandType.equals("구역제거"))
-            return plugin.getWorldManager().getRegionNames(false);
+        if(length == 2) {
+            if(commandType.equals("구역설정"))
+                return List.of("구역명");
 
-        if(length == 2 && (commandType.equals("음악설정") || commandType.equals("음악제거")))
-            return plugin.getWorldManager().getRegionNames(true);
+            if(commandType.equals("구역제거"))
+                return plugin.getWorldManager().getRegionNames(false);
+
+            if(commandType.equals("음악설정") || commandType.equals("음악제거") || commandType.equals("정보"))
+                return plugin.getWorldManager().getRegionNames(true);
+        }
+
+        if(length == 3 && commandType.equals("음악설정"))
+            return List.of("사운드");
+
+        if(length == 4 && commandType.equals("음악설정"))
+            return List.of("0.5", "1");
+
+        if(length == 5 && commandType.equals("음악설정"))
+            return List.of("음악길이(초)");
 
         return Collections.emptyList();
     }

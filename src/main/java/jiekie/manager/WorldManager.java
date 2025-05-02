@@ -362,6 +362,35 @@ public class WorldManager {
         }
     }
 
+    public void showGlobalMusicInfo(Player player) {
+        World world = player.getWorld();
+        String worldName = world.getName();
+        WorldData global = getGlobalWorldData(worldName);
+        if(global == null) {
+            ChatUtil.noMusic(player);
+            return;
+        }
+
+        ChatUtil.musicInfoPrefix(player);
+        ChatUtil.musicInfo(player, global);
+        ChatUtil.horizontalLineSuffix(player);
+        SoundEffectUtil.playNoteBlockBell(player);
+    }
+
+    public void showRegionMusicInfo(Player player, String name) {
+        if(!regionExists(name)) {
+            ChatUtil.regionDoesNotExist(player);
+            return;
+        }
+
+        WorldData region = getRegionWorldData(name);
+
+        ChatUtil.musicInfoPrefix(player);
+        ChatUtil.musicInfo(player, region);
+        ChatUtil.horizontalLineSuffix(player);
+        SoundEffectUtil.playNoteBlockBell(player);
+    }
+
     public void save() {
         saveGlobalSection();
         saveRegionSection();

@@ -49,6 +49,10 @@ public class BackgroundMusicCommand implements CommandExecutor {
                 removeMusic(player, args);
                 break;
 
+            case "정보":
+                showMusicInfo(player, args);
+                break;
+
             case "도움말":
                 ChatUtil.commandList(player);
                 break;
@@ -112,6 +116,7 @@ public class BackgroundMusicCommand implements CommandExecutor {
             duration = Integer.parseInt(args[4]);
         } catch(NumberFormatException e) {
             ChatUtil.secondsNotNumber(player);
+            return;
         }
 
         if(duration <= 0) {
@@ -138,5 +143,19 @@ public class BackgroundMusicCommand implements CommandExecutor {
             plugin.getWorldManager().removeGlobalMusic(player);
         else
             plugin.getWorldManager().removeRegionMusic(player, name);
+    }
+
+    private void showMusicInfo(Player player, String[] args) {
+        if(args.length < 2) {
+            player.sendMessage(ChatUtil.wrongCommand() + " (/브금 정보 전체|구역명)");
+            return;
+        }
+
+        String name = args[1];
+        if(name.equals("전체"))
+            plugin.getWorldManager().showGlobalMusicInfo(player);
+        else
+            plugin.getWorldManager().showRegionMusicInfo(player, name);
+
     }
 }
