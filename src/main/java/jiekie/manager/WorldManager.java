@@ -97,7 +97,7 @@ public class WorldManager {
         WorldData worldData = new WorldData(name, worldName, REGION_PREFIX, minLocation, maxLocation, soundData);
         regionList.add(worldData);
 
-        ChatUtil.setRegion(player);
+        ChatUtil.showMessage(player, ChatUtil.SET_REGION);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
@@ -117,7 +117,7 @@ public class WorldManager {
             if(!equalWorld(playerWorldData, region)) continue;
             if(region.contains(onlinePlayer.getLocation())) continue;
 
-            playerWorld.remove(onlinePlayer.getName());
+            playerWorld.remove(onlinePlayer.getUniqueId());
             plugin.getPlayingManager().stop(onlinePlayer);
 
             WorldData global = getCuurentPlayerWorldData(onlinePlayer);
@@ -127,13 +127,13 @@ public class WorldManager {
             plugin.getPlayingManager().play(onlinePlayer, global.getSoundData());
         }
 
-        ChatUtil.changeRegion(player);
+        ChatUtil.showMessage(player, ChatUtil.CHANGE_REGION);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
     public void removeRegion(Player player, String name) {
         if(!regionExists(name)) {
-            ChatUtil.regionDoesNotExist(player);
+            ChatUtil.showMessage(player, ChatUtil.REGION_DOES_NOT_EXIST);
             return;
         }
 
@@ -143,7 +143,7 @@ public class WorldManager {
             WorldData playerWorldData = getPlayerWorldData(onlinePlayer);
             if(!equalWorld(playerWorldData, region)) continue;
 
-            playerWorld.remove(onlinePlayer.getName());
+            playerWorld.remove(onlinePlayer.getUniqueId());
             plugin.getPlayingManager().stop(onlinePlayer);
             targetPlayerList.add(onlinePlayer);
         }
@@ -158,7 +158,7 @@ public class WorldManager {
             plugin.getPlayingManager().play(targetPlayer, global.getSoundData());
         }
 
-        ChatUtil.removeRegion(player);
+        ChatUtil.showMessage(player, ChatUtil.REMOVE_REGION);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
@@ -217,13 +217,13 @@ public class WorldManager {
             plugin.getPlayingManager().play(onlinePlayer, soundData);
         }
 
-        ChatUtil.setGlobalBackgroundMusic(player);
+        ChatUtil.showMessage(player, ChatUtil.SET_GLOBAL_BACKGROUND_MUSIC);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
     public void setRegionMusic(Player player, String name, String sound, float volume, int duration) {
         if(!regionExists(name)) {
-            ChatUtil.regionDoesNotExist(player);
+            ChatUtil.showMessage(player, ChatUtil.REGION_DOES_NOT_EXIST);
             return;
         }
 
@@ -239,7 +239,7 @@ public class WorldManager {
             plugin.getPlayingManager().play(onlinePlayer, soundData);
         }
 
-        ChatUtil.setRegionBackgroundMusic(player);
+        ChatUtil.showMessage(player, ChatUtil.SET_REGION_BACKGROUND_MUSIC);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
@@ -248,7 +248,7 @@ public class WorldManager {
         String worldName = world.getName();
         WorldData global = getGlobalWorldData(worldName);
         if(global == null) {
-            ChatUtil.noMusic(player);
+            ChatUtil.showMessage(player, ChatUtil.NO_MUSIC);
             return;
         }
 
@@ -262,19 +262,19 @@ public class WorldManager {
             plugin.getPlayingManager().stop(onlinePlayer);
         }
 
-        ChatUtil.removeGlobalBackgroundMusic(player);
+        ChatUtil.showMessage(player, ChatUtil.REMOVE_GLOBAL_BACKGROUND_MUSIC);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
     public void removeRegionMusic(Player player, String name) {
         if(!regionExists(name)) {
-            ChatUtil.regionDoesNotExist(player);
+            ChatUtil.showMessage(player, ChatUtil.REGION_DOES_NOT_EXIST);
             return;
         }
 
         WorldData region = getRegionWorldData(name);
         if(!soundExist(region)) {
-            ChatUtil.noMusic(player);
+            ChatUtil.showMessage(player, ChatUtil.NO_MUSIC);
             return;
         }
 
@@ -288,7 +288,7 @@ public class WorldManager {
             plugin.getPlayingManager().stop(onlinePlayer);
         }
 
-        ChatUtil.removeRegionBackgroundMusic(player);
+        ChatUtil.showMessage(player, ChatUtil.REMOVE_REGION_BACKGROUND_MUSIC);
         SoundEffectUtil.playNoteBlockBell(player);
     }
 
@@ -304,8 +304,7 @@ public class WorldManager {
         SoundData soundData = worldData.getSoundData();
 
         if(soundData == null) return false;
-        if(soundData.getSound() == null) return false;
-        return true;
+        return soundData.getSound() != null;
     }
 
     public List<String> getRegionNames(boolean withAll) {
@@ -367,7 +366,7 @@ public class WorldManager {
         String worldName = world.getName();
         WorldData global = getGlobalWorldData(worldName);
         if(global == null) {
-            ChatUtil.noMusic(player);
+            ChatUtil.showMessage(player, ChatUtil.NO_MUSIC);
             return;
         }
 
@@ -379,7 +378,7 @@ public class WorldManager {
 
     public void showRegionMusicInfo(Player player, String name) {
         if(!regionExists(name)) {
-            ChatUtil.regionDoesNotExist(player);
+            ChatUtil.showMessage(player, ChatUtil.REGION_DOES_NOT_EXIST);
             return;
         }
 

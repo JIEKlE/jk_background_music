@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,10 +20,9 @@ public class BackgroundMusicTabCompleter implements TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+    public List<String> onTabComplete(CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if(!sender.hasPermission("jk.background_music.command")) return Collections.emptyList();
-        if(!(sender instanceof Player)) return Collections.emptyList();
-        Player player = (Player) sender;
+        if(!(sender instanceof Player player)) return Collections.emptyList();
         Block targetBlock = player.getTargetBlockExact(10);
 
         int length = args.length;
@@ -47,14 +47,11 @@ public class BackgroundMusicTabCompleter implements TabCompleter {
         }
 
         if(length == 2) {
-            if(commandType.equals("구역설정"))
-                return List.of("구역명");
-
-            if(commandType.equals("구역제거"))
-                return plugin.getWorldManager().getRegionNames(false);
-
-            if(commandType.equals("음악설정") || commandType.equals("음악제거") || commandType.equals("정보"))
-                return plugin.getWorldManager().getRegionNames(true);
+            switch (commandType) {
+                case "구역설정" -> { return List.of("구역명"); }
+                case "구역제거" -> { return plugin.getWorldManager().getRegionNames(false); }
+                case "음악설정", "음악제거", "정보" -> { return plugin.getWorldManager().getRegionNames(true); }
+            }
         }
 
         if(length == 3 && commandType.equals("음악설정"))

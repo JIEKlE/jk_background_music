@@ -15,23 +15,11 @@ public class SoundData {
         return sound;
     }
 
-    public void setSound(String sound) {
-        this.sound = sound;
-    }
-
     public float getVolume() {
         return volume;
     }
 
-    public void setVolume(float volume) {
-        this.volume = volume;
-    }
-
     public int getDuration() {
         return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 }

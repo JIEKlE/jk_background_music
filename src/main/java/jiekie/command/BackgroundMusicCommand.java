@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class BackgroundMusicCommand implements CommandExecutor {
     private final BackgroundMusicPlugin plugin;
@@ -15,13 +16,12 @@ public class BackgroundMusicCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        if(!(sender instanceof Player player)) {
             ChatUtil.notPlayer(sender);
             return true;
         }
 
-        Player player = (Player) sender;
         if(!player.isOp()) {
             ChatUtil.notOp(player);
             return true;
@@ -84,7 +84,7 @@ public class BackgroundMusicCommand implements CommandExecutor {
             plugin.getWorldManager().setRegion(player, name, minX, minY, minZ, maxX, maxY, maxZ);
 
         } catch(NumberFormatException e) {
-            ChatUtil.coordinatesNotNumber(player);
+            ChatUtil.showMessage(player, ChatUtil.COORDINATES_NOT_NUMBER);
         }
     }
 
@@ -108,19 +108,19 @@ public class BackgroundMusicCommand implements CommandExecutor {
         try {
             volume = Float.parseFloat(args[3]);
         } catch(NumberFormatException e) {
-            ChatUtil.volumeNotNumber(player);
+            ChatUtil.showMessage(player, ChatUtil.VOLUME_NOT_NUMBER);
         }
 
-        int duration = 0;
+        int duration;
         try {
             duration = Integer.parseInt(args[4]);
         } catch(NumberFormatException e) {
-            ChatUtil.secondsNotNumber(player);
+            ChatUtil.showMessage(player, ChatUtil.SECONDS_NOT_NUMBER);
             return;
         }
 
         if(duration <= 0) {
-            ChatUtil.secondsUnderZero(player);
+            ChatUtil.showMessage(player, ChatUtil.SECONDS_UNDER_ZERO);
             return;
         }
 
