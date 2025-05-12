@@ -1,7 +1,7 @@
-package jiekie.command;
+package jiekie.bgm.command;
 
-import jiekie.BackgroundMusicPlugin;
-import jiekie.util.ChatUtil;
+import jiekie.bgm.BackgroundMusicPlugin;
+import jiekie.bgm.util.ChatUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

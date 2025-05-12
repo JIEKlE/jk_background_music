@@ -1,6 +1,6 @@
 name: jk_background_music
 version: '1.0-SNAPSHOT'
-main: jiekie.BackgroundMusicPlugin
+main: jiekie.bgm.BackgroundMusicPlugin
 api-version: '1.20'
 authors: [Jiekie]
 description: 브금 설정 플러그인
@@ -10,6 +10,6 @@ commands:
   브금:
     description: 브금 설정 명령어
     usage: /브금
-    tab-completer: jiekie.completer.BackgroundMusicTabCompleter
+    tab-completer: jiekie.bgm.completer.BackgroundMusicTabCompleter
     permission: jk.background_music.command
     permission-message: ''

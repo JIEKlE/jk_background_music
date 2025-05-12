@@ -1,6 +1,6 @@
-package jiekie.completer;
+package jiekie.bgm.completer;
 
-import jiekie.BackgroundMusicPlugin;
+import jiekie.bgm.BackgroundMusicPlugin;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

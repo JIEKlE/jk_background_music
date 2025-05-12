@@ -1,4 +1,4 @@
-package jiekie.model;
+package jiekie.bgm.model;
 
 import org.bukkit.Location;
 

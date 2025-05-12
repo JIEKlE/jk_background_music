@@ -1,7 +1,7 @@
-package jiekie.util;
+package jiekie.bgm.util;
 
-import jiekie.model.SoundData;
-import jiekie.model.WorldData;
+import jiekie.bgm.model.SoundData;
+import jiekie.bgm.model.WorldData;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;

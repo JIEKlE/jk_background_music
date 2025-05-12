@@ -1,6 +1,6 @@
-package jiekie.event;
+package jiekie.bgm.event;
 
-import jiekie.BackgroundMusicPlugin;
+import jiekie.bgm.BackgroundMusicPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

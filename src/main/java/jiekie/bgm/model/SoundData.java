@@ -1,4 +1,4 @@
-package jiekie.model;
+package jiekie.bgm.model;
 
 public class SoundData {
     private String sound;

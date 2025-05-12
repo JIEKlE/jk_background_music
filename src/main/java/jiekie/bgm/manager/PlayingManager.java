@@ -1,7 +1,7 @@
-package jiekie.manager;
+package jiekie.bgm.manager;
 
-import jiekie.BackgroundMusicPlugin;
-import jiekie.model.SoundData;
+import jiekie.bgm.BackgroundMusicPlugin;
+import jiekie.bgm.model.SoundData;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;

@@ -1,10 +1,10 @@
-package jiekie;
+package jiekie.bgm;
 
-import jiekie.command.BackgroundMusicCommand;
-import jiekie.completer.BackgroundMusicTabCompleter;
-import jiekie.event.PlayerEvent;
-import jiekie.manager.PlayingManager;
-import jiekie.manager.WorldManager;
+import jiekie.bgm.command.BackgroundMusicCommand;
+import jiekie.bgm.completer.BackgroundMusicTabCompleter;
+import jiekie.bgm.event.PlayerEvent;
+import jiekie.bgm.manager.PlayingManager;
+import jiekie.bgm.manager.WorldManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BackgroundMusicPlugin extends JavaPlugin {
